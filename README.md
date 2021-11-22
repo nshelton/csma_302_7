@@ -6,7 +6,7 @@ We're making a raytracer
 
 ## Due Date
 
-**The assignment is due on Wednesday December 1 during 9-1130am studio class (final exam period) **
+The assignment is due on Wednesday December 1 during 9-1130am studio class (final exam period)
 
 ## Resources
 
