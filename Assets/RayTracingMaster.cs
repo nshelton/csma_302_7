@@ -6,7 +6,6 @@ public class RayTracingMaster : MonoBehaviour
     public ComputeShader RayTracingShader;
     public Texture Skybox;
     public float SkyBrightness;
-    public Light DirectionalLight;
 
     public int NumSpheres;
     public float SpherePlacementRadius;
@@ -19,13 +18,15 @@ public class RayTracingMaster : MonoBehaviour
     private Material _addMaterial;
     private ComputeBuffer _sphereBuffer;
 
-    private int SPHERE_STRIDE = 40;
-    // 40 bytes total
+    private int SPHERE_STRIDE = 56;
+    // 56 bytes total
     struct Sphere {
         public Vector3 position; //3 floats * 4 bytes = 12 bytes
         public float radius; 
         public Vector3 albedo;
         public Vector3 specular;
+        public Vector3 emission;
+        public float smoothness;
     }
 
     private void OnRenderImage(RenderTexture source, RenderTexture destination)
@@ -60,10 +61,6 @@ public class RayTracingMaster : MonoBehaviour
         RayTracingShader.SetVector("_PixelOffset", new Vector2(Random.value, Random.value));
         RayTracingShader.SetFloat("_Seed", Random.value);
         RayTracingShader.SetFloat("_SkyBrightness", SkyBrightness);
-
-        Vector3 l = DirectionalLight.transform.forward;
-        RayTracingShader.SetVector("_DirectionalLight", new Vector4(l.x, l.y, l.z, DirectionalLight.intensity));
-
 
         int threadGroupsX = Mathf.CeilToInt(Screen.width / 8.0f);
         int threadGroupsY = Mathf.CeilToInt(Screen.height / 8.0f);
@@ -119,6 +116,8 @@ public class RayTracingMaster : MonoBehaviour
     private void SetUpScene()
     {
         List<Sphere> spheres = new List<Sphere>();
+
+
         // Add a number of random spheres
         for (int i = 0; i < NumSpheres; i++)
         {
@@ -134,11 +133,20 @@ public class RayTracingMaster : MonoBehaviour
                 if (Vector3.SqrMagnitude(sphere.position - other.position) < minDist * minDist)
                     goto SkipSphere;
             }
+
             // Albedo and specular color
             Color color = Random.ColorHSV();
-            bool metal = Random.value < 0.0f;
+            bool metal = Random.value < 0.3f;
             sphere.albedo = metal ? Vector3.zero : new Vector3(color.r, color.g, color.b);
             sphere.specular = metal ? new Vector3(color.r, color.g, color.b) : Vector3.one * 0.04f;
+
+            bool emissive = Random.value < 0.3f;
+            if (emissive) {
+                sphere.emission = new Vector3(color.r, color.g, color.b) * 3f;
+            }
+            
+            sphere.smoothness = Random.value;
+            
             // Add the sphere to the list
             spheres.Add(sphere);
         SkipSphere:
