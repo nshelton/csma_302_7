@@ -10,7 +10,7 @@ public class RayTracingMaster : MonoBehaviour
 
     // public int NumSpheres;
     // public float SpherePlacementRadius;
-    public Vector2 SphereRadius;
+    // public Vector2 SphereRadius;
 
     public Color albedo = new Color(0.5f, 0.5f, 0.5f);
     [Range(0,1)] public float smoothness = 0.5f;
@@ -254,7 +254,7 @@ public class RayTracingMaster : MonoBehaviour
                 Sphere sphere = new Sphere();
                 // Radius and radius
                 Vector2 randomPos = Random.insideUnitCircle * 50;
-                sphere.radius = SphereRadius.x + 1 * (SphereRadius.y - SphereRadius.x);
+                sphere.radius = light.lightSize + 1 * (light.lightSize - light.lightSize);
                 sphere.position = new Vector3(light.transform.position.x, light.transform.position.y, light.transform.position.z);
         
                 sphere.albedo = new Vector3(obj.lightColor.r, obj.lightColor.g, obj.lightColor.b) * obj.intensity;
