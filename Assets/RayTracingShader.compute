@@ -29,7 +29,7 @@ struct RayHit
     float3 albedo;
     float3 specular;
     float smoothness;
-    float emission;
+    float3 emission;
 };
 
 struct Sphere
@@ -39,7 +39,7 @@ struct Sphere
     float3 albedo;
     float3 specular;
     float smoothness;
-    float emission;
+    float3 emission;
 };
 
 struct MeshObject
@@ -48,6 +48,7 @@ struct MeshObject
     int indices_offset;
     int indices_count;
 };
+
 StructuredBuffer<MeshObject> _MeshObjects;
 StructuredBuffer<float3> _Vertices;
 StructuredBuffer<int> _Indices;
@@ -67,6 +68,38 @@ float rand()
     float result = frac(sin(_Seed / 100.0f * dot(_Pixel, float2(12.9898f, 78.233f))) * 43758.5453f);
     _Seed += 1.0f;
     return result;
+}
+
+static const float EPSILON = 1e-8;
+bool IntersectTriangle_MT97(Ray ray, float3 vert0, float3 vert1, float3 vert2,
+    inout float t, inout float u, inout float v)
+{
+    // find vectors for two edges sharing vert0
+    float3 edge1 = vert1 - vert0;
+    float3 edge2 = vert2 - vert0;
+    // begin calculating determinant - also used to calculate U parameter
+    float3 pvec = cross(ray.direction, edge2);
+    // if determinant is near zero, ray lies in plane of triangle
+    float det = dot(edge1, pvec);
+    // use backface culling
+    if (det < EPSILON)
+        return false;
+    float inv_det = 1.0f / det;
+    // calculate distance from vert0 to ray origin
+    float3 tvec = ray.origin - vert0;
+    // calculate U parameter and test bounds
+    u = dot(tvec, pvec) * inv_det;
+    if (u < 0.0 || u > 1.0f)
+        return false;
+    // prepare to test V parameter
+    float3 qvec = cross(tvec, edge1);
+    // calculate V parameter and test bounds
+    v = dot(ray.direction, qvec) * inv_det;
+    if (v < 0.0 || u + v > 1.0f)
+        return false;
+    // calculate t, ray intersects triangle
+    t = dot(edge2, qvec) * inv_det;
+    return true;
 }
 
 float3x3 GetTangentSpace(float3 normal)
@@ -133,9 +166,11 @@ void IntersectGroundPlane(Ray ray, inout RayHit bestHit)
         bestHit.distance = t;
         bestHit.position = ray.origin + t * ray.direction;
         bestHit.normal = float3(0.0f, 1.0f, 0.0f);
-        
         bestHit.albedo = float3(0.7,0.7,0.7);
         bestHit.specular = float3(0.1,0.1,0.1);
+        bestHit.smoothness = 0;
+        bestHit.emission = float3(0, 0, 0);
+
     }
 }
 
@@ -156,40 +191,11 @@ void IntersectSphere(Ray ray, inout RayHit bestHit, Sphere sphere)
         bestHit.normal = normalize(bestHit.position - sphere.position);
         bestHit.albedo = sphere.albedo;
         bestHit.specular = sphere.specular;
+        bestHit.emission = sphere.emission;
+        bestHit.smoothness = sphere.smoothness;
     }
 }
 
-static const float EPSILON = 1e-8;
-bool IntersectTriangle_MT97(Ray ray, float3 vert0, float3 vert1, float3 vert2,
-    inout float t, inout float u, inout float v)
-{
-    // find vectors for two edges sharing vert0
-    float3 edge1 = vert1 - vert0;
-    float3 edge2 = vert2 - vert0;
-    // begin calculating determinant - also used to calculate U parameter
-    float3 pvec = cross(ray.direction, edge2);
-    // if determinant is near zero, ray lies in plane of triangle
-    float det = dot(edge1, pvec);
-    // use backface culling
-    if (det < EPSILON)
-        return false;
-    float inv_det = 1.0f / det;
-    // calculate distance from vert0 to ray origin
-    float3 tvec = ray.origin - vert0;
-    // calculate U parameter and test bounds
-    u = dot(tvec, pvec) * inv_det;
-    if (u < 0.0 || u > 1.0f)
-        return false;
-    // prepare to test V parameter
-    float3 qvec = cross(tvec, edge1);
-    // calculate V parameter and test bounds
-    v = dot(ray.direction, qvec) * inv_det;
-    if (v < 0.0 || u + v > 1.0f)
-        return false;
-    // calculate t, ray intersects triangle
-    t = dot(edge2, qvec) * inv_det;
-    return true;
-}
 
 void IntersectMeshObject(Ray ray, inout RayHit bestHit, MeshObject meshObject)
 {
@@ -208,8 +214,8 @@ void IntersectMeshObject(Ray ray, inout RayHit bestHit, MeshObject meshObject)
                 bestHit.distance = t;
                 bestHit.position = ray.origin + t * ray.direction;
                 bestHit.normal = normalize(cross(v1 - v0, v2 - v0));
-                bestHit.albedo = 0.0f;
-                bestHit.specular = 0.65f;
+                bestHit.albedo = float3(0.5, 0.5, 0.5);
+                bestHit.specular = float3(0.8, 0.8, 0.8);
                 bestHit.smoothness = 0.99f;
                 bestHit.emission = 0.0f;
             }
@@ -233,6 +239,7 @@ RayHit Trace(Ray ray)
     {
         IntersectMeshObject(ray, bestHit, _MeshObjects[i]);
     }
+
 
     return bestHit;
 }
@@ -277,7 +284,7 @@ void CSMain (uint3 id : SV_DispatchThreadID)
 
     // Trace and shade
     float3 result = float3(0, 0, 0);
-    for (int i = 0; i < 8; i++)
+    for (int i = 0; i < 2; i++)
     {
         RayHit hit = Trace(ray);
         result += ray.energy * Shade(ray, hit);

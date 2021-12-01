@@ -67,6 +67,8 @@ public class RayTracingMaster : MonoBehaviour
     {
         // Make sure we have a current render target
         InitRenderTexture();
+        
+        RebuildMeshObjectBuffers();
         // Set the target and dispatch the compute shader
         RayTracingShader.SetTexture(0, "Result", _target);
         RayTracingShader.SetTexture(0, "_SkyboxTexture", Skybox);
@@ -134,14 +136,18 @@ public class RayTracingMaster : MonoBehaviour
     }
     private void OnDisable()
     {
-        if (_sphereBuffer != null)
+        if (_sphereBuffer != null){
             _sphereBuffer.Release();
-        if (_meshObjectBuffer != null)
-            _meshObjectBuffer.Release();   
-        if (_vertexBuffer != null)
+        }
+        if (_meshObjectBuffer != null){
+            _meshObjectBuffer.Release();
+        }  
+        if (_vertexBuffer != null){
             _vertexBuffer.Release();
-        if (_indexBuffer != null)
-            _indexBuffer.Release();  
+        }  
+        if (_indexBuffer != null){
+            _indexBuffer.Release();
+        }   
     }
     private void SetUpScene()
     {
