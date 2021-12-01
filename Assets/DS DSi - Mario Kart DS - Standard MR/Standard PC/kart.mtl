@@ -1,0 +1,38 @@
+# Blender MTL File: 'None'
+# Material Count: 3
+
+newmtl kart_body
+Ns 0.000000
+Ka 1.000000 1.000000 1.000000
+Kd 0.972549 0.972549 0.972549
+Ks 0.000000 0.000000 0.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 1
+map_Kd kart.png
+map_d kart_body.png
+
+newmtl kart_emblem
+Ns 0.000000
+Ka 1.000000 1.000000 1.000000
+Kd 0.972549 0.972549 0.972549
+Ks 0.000000 0.000000 0.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 1
+map_Kd emblem.png
+map_d kart_emblem.png
+
+newmtl kart_tire
+Ns 0.000000
+Ka 1.000000 1.000000 1.000000
+Kd 0.972549 0.972549 0.972549
+Ks 0.000000 0.000000 0.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 1
+map_Kd wheel.png
+map_d kart_tire.png

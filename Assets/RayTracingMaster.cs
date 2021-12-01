@@ -39,13 +39,15 @@ public class RayTracingMaster : MonoBehaviour
     private ComputeBuffer _indexBuffer;
 
 
-    private int SPHERE_STRIDE = 40;
+    private int SPHERE_STRIDE = 56;
     // 40 bytes total
     struct Sphere {
         public Vector3 position; //3 floats * 4 bytes = 12 bytes
         public float radius; 
         public Vector3 albedo;
         public Vector3 specular;
+        public Vector3 emission;
+        public float smoothness;
     }
 
     private void OnRenderImage(RenderTexture source, RenderTexture destination)
@@ -67,7 +69,6 @@ public class RayTracingMaster : MonoBehaviour
     {
         // Make sure we have a current render target
         InitRenderTexture();
-        
         RebuildMeshObjectBuffers();
         // Set the target and dispatch the compute shader
         RayTracingShader.SetTexture(0, "Result", _target);
@@ -132,7 +133,8 @@ public class RayTracingMaster : MonoBehaviour
     private void OnEnable()
     {
         _currentSample = 0;
-        SetUpScene();
+        CreateLighting();
+        //CreateRandomSpheres();
     }
     private void OnDisable()
     {
@@ -149,7 +151,37 @@ public class RayTracingMaster : MonoBehaviour
             _indexBuffer.Release();
         }   
     }
-    private void SetUpScene()
+
+    private void CreateLighting()
+    {
+        List<Sphere> spheres = new List<Sphere>();
+
+        Sphere s = new Sphere();
+        Sphere s1 = new Sphere();
+
+        s.position = new Vector3(0.2f, 0.2f, 0.6f);
+        s.radius = 0.05f;
+        s.emission = new Vector3(10, 10, 10);
+        s.albedo = Vector3.one;
+        s.specular = Vector3.one;
+        s.smoothness = 0;
+
+        s1.position = new Vector3(-0.2f, 0.2f, 0.6f);
+        s1.radius = 0.05f;
+        s1.emission = new Vector3(20, 20, 20);
+        s1.albedo = Vector3.one;
+        s1.specular = Vector3.one;
+        s1.smoothness = 0;
+
+        spheres.Add(s);
+        spheres.Add(s1);
+
+         // Assign to compute buffer
+        _sphereBuffer = new ComputeBuffer(spheres.Count, SPHERE_STRIDE);
+        _sphereBuffer.SetData(spheres);
+    }
+
+    private void CreateRandomSpheres()
     {
         List<Sphere> spheres = new List<Sphere>();
         // Add a number of random spheres
@@ -167,14 +199,23 @@ public class RayTracingMaster : MonoBehaviour
                 if (Vector3.SqrMagnitude(sphere.position - other.position) < minDist * minDist)
                     goto SkipSphere;
             }
+
             // Albedo and specular color
             Color color = Random.ColorHSV();
-            bool metal = Random.value < 0.0f;
+            bool metal = Random.value < 0.3f;
             sphere.albedo = metal ? Vector3.zero : new Vector3(color.r, color.g, color.b);
             sphere.specular = metal ? new Vector3(color.r, color.g, color.b) : Vector3.one * 0.04f;
+
+            bool emissive = Random.value < 0.3f;
+            if (emissive) {
+                sphere.emission = new Vector3(color.r, color.g, color.b) * 3f;
+            }
+            
+            sphere.smoothness = Random.value;
+            
             // Add the sphere to the list
             spheres.Add(sphere);
-        SkipSphere:
+            SkipSphere:
             continue;
         }
         // Assign to compute buffer
@@ -216,14 +257,18 @@ public class RayTracingMaster : MonoBehaviour
             // Add index data - if the vertex buffer wasn't empty before, the
             // indices need to be offset
             int firstIndex = _indices.Count;
-            var indices = mesh.GetIndices(0);
-            _indices.AddRange(indices.Select(index => index + firstVertex));
+            int total_Indices = 0;
+            for (int i = 0; i < mesh.subMeshCount; i++){
+                var indices = mesh.GetIndices(i);
+                _indices.AddRange(indices.Select(index => index + firstVertex));
+                total_Indices += indices.Length;
+            }
             // Add the object itself
             _meshObjects.Add(new MeshObject()
             {
             localToWorldMatrix = obj.transform.localToWorldMatrix,
             indices_offset = firstIndex,
-            indices_count = indices.Length
+            indices_count = total_Indices,
             });
         }
         CreateComputeBuffer(ref _meshObjectBuffer, _meshObjects, 72);

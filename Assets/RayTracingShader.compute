@@ -58,9 +58,19 @@ StructuredBuffer<Sphere> _Spheres;
 float2 _Pixel;
 float _Seed;
 
+float energy(float3 color)
+{
+    return dot(color, 1.0f / 3.0f);
+}
+
 float sdot(float3 x, float3 y, float f = 1.0f)
 {
     return saturate(dot(x, y) * f);
+}
+
+float SmoothnessToPhongAlpha(float s)
+{
+    return pow(1000.0f, s * s);
 }
 
 float rand()
@@ -82,7 +92,7 @@ bool IntersectTriangle_MT97(Ray ray, float3 vert0, float3 vert1, float3 vert2,
     // if determinant is near zero, ray lies in plane of triangle
     float det = dot(edge1, pvec);
     // use backface culling
-    if (det < EPSILON)
+    if (abs(det) < EPSILON)
         return false;
     float inv_det = 1.0f / det;
     // calculate distance from vert0 to ray origin
@@ -114,11 +124,11 @@ float3x3 GetTangentSpace(float3 normal)
     return float3x3(tangent, binormal, normal);
 }
 
-float3 SampleHemisphere(float3 normal)
+float3 SampleHemisphere(float3 normal, float alpha)
 {
-    // Uniformly sample hemisphere direction
-    float cosTheta = rand();
-    float sinTheta = sqrt(max(0.0f, 1.0f - cosTheta * cosTheta));
+    // Sample the hemisphere, where alpha determines the kind of the sampling
+    float cosTheta = pow(rand(), 1.0f / (alpha + 1.0f));
+    float sinTheta = sqrt(1.0f - cosTheta * cosTheta);
     float phi = 2 * PI * rand();
     float3 tangentSpaceDir = float3(cos(phi) * sinTheta, sin(phi) * sinTheta, cosTheta);
     // Transform direction to world space
@@ -176,7 +186,7 @@ void IntersectGroundPlane(Ray ray, inout RayHit bestHit)
 
 void IntersectSphere(Ray ray, inout RayHit bestHit, Sphere sphere)
 {
-    // Calculate distance along the ray where the sphere is intersected
+     // Calculate distance along the ray where the sphere is intersected
     float3 d = ray.origin - sphere.position;
     float p1 = -dot(ray.direction, d);
     float p2sqr = p1 * p1 - dot(d, d) + sphere.radius * sphere.radius;
@@ -216,8 +226,8 @@ void IntersectMeshObject(Ray ray, inout RayHit bestHit, MeshObject meshObject)
                 bestHit.normal = normalize(cross(v1 - v0, v2 - v0));
                 bestHit.albedo = float3(0.5, 0.5, 0.5);
                 bestHit.specular = float3(0.8, 0.8, 0.8);
-                bestHit.smoothness = 0.99f;
-                bestHit.emission = 0.0f;
+                bestHit.smoothness = 0.4;
+                bestHit.emission = 0;
             }
         }
     }
@@ -251,10 +261,32 @@ float3 Shade(inout Ray ray, RayHit hit)
         float3 specular = hit.specular;
         float3 albedo = hit.albedo;
        
-        ray.origin = hit.position + hit.normal * 0.001f;
-        ray.direction = SampleHemisphere(hit.normal);
-        ray.energy *= 2 * hit.albedo * sdot(hit.normal, ray.direction);
-        return 0.0f;  
+        // Calculate chances of diffuse and specular reflection
+        hit.albedo = min(1.0f - hit.specular, hit.albedo);
+        float specChance = energy(hit.specular);
+        float diffChance = energy(hit.albedo);
+        float sum = specChance + diffChance;
+        specChance /= sum;
+        diffChance /= sum;
+        // Roulette-select the ray's path
+        float roulette = rand();
+        if (roulette < specChance)
+        {
+            // Specular reflection
+            float alpha = SmoothnessToPhongAlpha(hit.smoothness);
+            ray.origin = hit.position + hit.normal * 0.001f;
+            ray.direction = SampleHemisphere(reflect(ray.direction, hit.normal), alpha);
+            float f = (alpha + 2) / (alpha + 1);
+            ray.energy *= (1.0f / specChance) * hit.specular * sdot(hit.normal, ray.direction, f);
+        }
+        else
+        {
+            ray.origin = hit.position + hit.normal * 0.001f;
+            ray.direction = SampleHemisphere(hit.normal, 1.0f);
+            ray.energy *= (1.0f / diffChance) * hit.albedo;
+        }
+
+        return hit.emission;
 
     }
     else
