@@ -4,6 +4,7 @@ WU Fall 2021 | CSMA 302 | Lab #7
 # Changing Sphere/Color
 
 In the RayTracingMaster.cs on line 155 there are sphere presets for each scene.
+
 In the RayTracingShader.compute on line 236 is the change in color.
 
 # Raytracer
