@@ -1,12 +1,55 @@
 WU Fall 2021 | CSMA 302 | Lab #7
 ---
+
+#Changing Sphere/Color
+
+In the RayTracingMaster.cs on line 155 there are sphere presets for each scene.
+---
+In the RayTracingShader.compute on line 236 is the change in color.
+
 # Raytracer
 
-We're making a raytracer
+We're making a brute-force basic "Whitted" raytracer.
 
+We will go over ray-sphere intersection in class and implement different BRDF material models and then you will render your own triangle mesh with lighting.
+
+You'll need to implement the following: 
+ - Ray-triangle intersection
+ - create custom mesh data structures and compute buffers to upload to the GPU
+
+Then you will find your own assets to render:
+ - a triangle mesh. You probably want something low poly to keep your render times fast, otherwise it will be hard to move the camera around.
+ - custom skybox HDRI (https://polyhaven.com/hdris) - (not the one in the project)
+ - place some emissive spheres in your scene with the c# script (not random)
+
+Make 3 renders with different lighting setups, and include them in the root of your project folder (.png) 
+
+## Grading
+each bullet is 10 points :
+
+code:
+  -  ray triangle intersection implemented
+  -  uploading mesh and index buffers to GPU implemented
+  -  basic raytracing works (implemented in class) 
+
+
+assets:
+  -  custom lighting spheres from c#
+  -  custom HDRI skybox
+  -  an interesting model 
+  -  add model material parameters (ok if hardcoded in compute shader)
+
+
+ rendering:
+  -  3 "Final Render" images in the root of your project with different lighting setups
+  -  the images looking nice and low noise
+  -  creativity and interesting scene setup
+ 
 ## Due Date
 
-**The assignment is due on Wednesday December 1 during 9-1130am studio class (final exam period) **
+The assignment is due on Wednesday December 1 during 9-1130am studio class (final exam period)
+
+no class is officially scheduled Monday Nov 29 but please reach out to schedule some office hours if you have any questions or problems with your raytracer.
 
 ## Resources
 
@@ -16,9 +59,10 @@ We're making a raytracer
 
 [GPU raytracing in Unity](http://three-eyed-games.com/2018/05/03/gpu-ray-tracing-in-unity-part-1/)
 
-## Grading
+[HDRIs](https://polyhaven.com/hdris)
 
-tbd
+[Low-poly 3D videogame Models](https://www.models-resource.com/)
+
 
 ## Submitting 
 (this is also in the syllabus, but consider this an updated version)

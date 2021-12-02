@@ -1,0 +1,270 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<COLLADA xmlns="http://www.collada.org/2005/11/COLLADASchema" version="1.4.1">
+    <asset>
+        <contributor>
+            <authoring_tool>N3DSCmbViewer - Experimental Cmb Viewer v0.2.6</authoring_tool>
+        </contributor>
+        <created>2021-02-06T05:25:36Z</created>
+        <modified>2021-02-06T05:25:36Z</modified>
+        <unit meter="0.01" name="centimeter" />
+        <up_axis>Y_UP</up_axis>
+    </asset>
+    <library_images>
+        <image id="image-oca0_a-37009CF7" name="image-oca0_a-37009CF7">
+            <init_from>oca0_a_0.png</init_from>
+        </image>
+        <image id="image-oca0_c-32D6E705" name="image-oca0_c-32D6E705">
+            <init_from>oca0_c_2000.png</init_from>
+        </image>
+        <image id="image-oca0_d-0CE4AAC4" name="image-oca0_d-0CE4AAC4">
+            <init_from>oca0_d_2200.png</init_from>
+        </image>
+        <image id="image-oca0_b-08BAF4D2" name="image-oca0_b-08BAF4D2">
+            <init_from>oca0_b_3200.png</init_from>
+        </image>
+    </library_images>
+    <library_effects>
+        <effect id="effect-default" name="effect-default">
+            <profile_COMMON>
+                <technique sid="COMMON">
+                    <phong>
+                        <diffuse>
+                            <color>1.0 1.0 1.0 1.0</color>
+                        </diffuse>
+                    </phong>
+                </technique>
+            </profile_COMMON>
+        </effect>
+        <effect id="effect-oca0_a-37009CF7" name="effect-oca0_a-37009CF7">
+            <profile_COMMON>
+                <newparam sid="surface-oca0_a-37009CF7">
+                    <surface type="2D">
+                        <init_from>image-oca0_a-37009CF7</init_from>
+                    </surface>
+                </newparam>
+                <newparam sid="sampler-oca0_a-37009CF7">
+                    <sampler2D>
+                        <source>surface-oca0_a-37009CF7</source>
+                        <wrap_s>WRAP</wrap_s>
+                        <wrap_t>WRAP</wrap_t>
+                        <minfilter>LINEAR</minfilter>
+                        <magfilter>LINEAR</magfilter>
+                    </sampler2D>
+                </newparam>
+                <technique sid="COMMON">
+                    <phong>
+                        <diffuse>
+                            <texture texture="sampler-oca0_a-37009CF7" texcoord="TEXCOORD0" />
+                        </diffuse>
+                    </phong>
+                </technique>
+            </profile_COMMON>
+        </effect>
+        <effect id="effect-oca0_c-32D6E705" name="effect-oca0_c-32D6E705">
+            <profile_COMMON>
+                <newparam sid="surface-oca0_c-32D6E705">
+                    <surface type="2D">
+                        <init_from>image-oca0_c-32D6E705</init_from>
+                    </surface>
+                </newparam>
+                <newparam sid="sampler-oca0_c-32D6E705">
+                    <sampler2D>
+                        <source>surface-oca0_c-32D6E705</source>
+                        <wrap_s>WRAP</wrap_s>
+                        <wrap_t>WRAP</wrap_t>
+                        <minfilter>LINEAR</minfilter>
+                        <magfilter>LINEAR</magfilter>
+                    </sampler2D>
+                </newparam>
+                <technique sid="COMMON">
+                    <phong>
+                        <diffuse>
+                            <texture texture="sampler-oca0_c-32D6E705" texcoord="TEXCOORD0" />
+                        </diffuse>
+                    </phong>
+                </technique>
+            </profile_COMMON>
+        </effect>
+        <effect id="effect-oca0_d-0CE4AAC4" name="effect-oca0_d-0CE4AAC4">
+            <profile_COMMON>
+                <newparam sid="surface-oca0_d-0CE4AAC4">
+                    <surface type="2D">
+                        <init_from>image-oca0_d-0CE4AAC4</init_from>
+                    </surface>
+                </newparam>
+                <newparam sid="sampler-oca0_d-0CE4AAC4">
+                    <sampler2D>
+                        <source>surface-oca0_d-0CE4AAC4</source>
+                        <wrap_s>WRAP</wrap_s>
+                        <wrap_t>WRAP</wrap_t>
+                        <minfilter>LINEAR</minfilter>
+                        <magfilter>LINEAR</magfilter>
+                    </sampler2D>
+                </newparam>
+                <technique sid="COMMON">
+                    <phong>
+                        <diffuse>
+                            <texture texture="sampler-oca0_d-0CE4AAC4" texcoord="TEXCOORD0" />
+                        </diffuse>
+                    </phong>
+                </technique>
+            </profile_COMMON>
+        </effect>
+        <effect id="effect-oca0_b-08BAF4D2" name="effect-oca0_b-08BAF4D2">
+            <profile_COMMON>
+                <newparam sid="surface-oca0_b-08BAF4D2">
+                    <surface type="2D">
+                        <init_from>image-oca0_b-08BAF4D2</init_from>
+                    </surface>
+                </newparam>
+                <newparam sid="sampler-oca0_b-08BAF4D2">
+                    <sampler2D>
+                        <source>surface-oca0_b-08BAF4D2</source>
+                        <wrap_s>WRAP</wrap_s>
+                        <wrap_t>WRAP</wrap_t>
+                        <minfilter>LINEAR</minfilter>
+                        <magfilter>LINEAR</magfilter>
+                    </sampler2D>
+                </newparam>
+                <technique sid="COMMON">
+                    <phong>
+                        <diffuse>
+                            <texture texture="sampler-oca0_b-08BAF4D2" texcoord="TEXCOORD0" />
+                        </diffuse>
+                    </phong>
+                </technique>
+            </profile_COMMON>
+        </effect>
+    </library_effects>
+    <library_materials>
+        <material id="material-3FB9CF13">
+            <instance_effect url="#effect-oca0_a-37009CF7" />
+        </material>
+        <material id="material-24AD9BC8">
+            <instance_effect url="#effect-oca0_a-37009CF7" />
+        </material>
+    </library_materials>
+    <library_geometries>
+        <geometry id="geom-1F04C8D7" name="geom-1F04C8D7">
+            <mesh>
+                <source id="geom-1F04C8D7-pos">
+                    <float_array id="geom-1F04C8D7-pos-array" count="429">-21.28 19.14 17.23 -8.15 9.13 13.06 -14.60 3.57 18.19 -11.29 6.42 15.56 -12.58 5.07 18.37 -8.73 8.39 15.31 -10.25 6.95 17.45 -25.66 21.12 14.79 -23.82 24.83 16.41 -24.29 25.36 13.90 -23.35 17.27 19.14 -26.42 22.37 18.88 -26.36 15.63 17.71 -28.51 21.32 18.06 -19.39 20.87 15.47 -20.48 21.45 11.31 -23.82 24.83 16.41 -24.29 25.36 13.90 23.91 17.35 -16.08 24.77 12.66 -19.35 24.47 20.12 -21.60 23.50 17.57 -25.11 23.27 21.06 -25.21 11.78 -9.39 -13.58 17.57 0.45 -19.15 15.80 -8.21 -8.26 20.97 1.57 -14.43 14.83 4.97 2.98 9.80 -0.36 9.45 17.67 -3.25 -1.53 12.87 -9.61 4.20 8.47 12.03 2.92 2.64 7.82 9.86 3.32 -6.16 15.08 -3.26 2.68 15.69 -14.07 2.01 18.35 -15.81 -6.37 22.50 -10.23 -2.52 20.12 -4.27 -11.54 19.46 -11.51 -16.57 22.44 -1.23 -20.90 14.15 -9.31 -25.43 17.22 -16.83 -19.00 22.48 -6.52 8.02 12.53 6.15 -15.40 9.57 0.72 -22.09 -2.84 4.46 -20.42 2.76 -5.59 -26.52 3.40 -2.40 -25.38 8.17 20.15 21.01 -16.42 20.87 22.62 -22.92 16.58 22.28 -18.64 -13.16 -26.95 17.23 -21.82 -5.90 19.37 -20.03 0.87 16.16 -14.07 2.01 18.35 -20.03 0.87 16.16 -6.52 8.02 12.53 -9.89 11.04 5.61 -26.73 24.03 12.43 -24.41 19.46 9.52 -29.15 21.55 15.37 -27.82 15.93 13.71 14.66 16.96 -6.30 -0.75 16.13 -2.76 7.85 19.80 -10.68 6.63 -16.30 -8.47 10.87 -14.94 -2.86 22.28 4.65 -9.97 20.23 11.14 -5.92 -2.82 10.70 7.80 -9.89 11.04 5.61 17.97 12.70 -26.28 23.50 17.57 -25.11 21.94 10.95 -23.82 20.43 19.85 -26.09 14.72 16.74 -25.61 14.57 20.77 -22.17 4.99 10.86 -22.09 9.19 4.70 -23.84 16.58 22.28 -18.64 7.85 19.80 -10.68 4.43 16.49 -17.43 12.68 2.20 -22.66 17.57 0.45 -19.15 6.23 -7.58 -17.64 11.78 -9.39 -13.58 -3.81 4.26 -17.23 0.80 -3.44 -19.34 -10.31 -1.04 -12.32 -5.05 -10.22 -14.88 -4.70 12.08 -10.77 -11.54 7.50 -5.38 -17.82 2.16 0.84 -16.22 -6.65 -6.21 -18.55 -24.29 5.94 -23.39 -16.29 8.28 -15.59 -20.90 -1.30 -20.66 -11.83 1.06 -12.23 -28.29 10.16 -10.72 -24.21 0.34 -5.59 -26.52 3.40 -10.40 -15.77 -8.60 -5.26 -19.73 -6.84 0.72 -22.09 -2.84 -23.60 -6.89 13.08 -22.06 -2.88 6.84 -21.82 -5.90 19.37 -20.03 0.87 16.16 -21.72 0.74 9.83 -0.75 16.13 -2.76 6.63 -16.30 -8.47 0.57 -14.36 -12.79 -21.72 -19.90 19.88 -23.75 -18.83 14.70 -19.69 -24.95 17.90 -19.09 -26.56 11.08 -16.96 -27.55 15.11 -22.70 -14.47 20.61 -9.89 11.04 5.61 -16.08 6.67 2.67 20.87 22.62 -22.92 16.58 22.28 -18.64 20.15 21.01 -16.42 23.91 17.35 -16.08 24.77 12.66 -19.35 21.94 10.95 -23.82 21.94 10.95 -23.82 -16.08 6.67 2.67 -29.15 21.55 15.37 -28.51 21.32 18.06 -26.36 15.63 17.71 -28.51 21.32 18.06 -21.72 0.74 9.83 -20.03 0.87 16.16 23.27 21.06 -25.21 -12.23 -28.29 10.16 -22.70 -14.47 20.61 -19.69 -24.95 17.90 -16.96 -27.55 15.11 -21.72 -19.90 19.88 -26.42 22.37 18.88 -26.73 24.03 12.43 </float_array>
+                    <technique_common>
+                        <accessor source="#geom-1F04C8D7-pos-array" count="143" stride="3">
+                            <param name="X" type="float" />
+                            <param name="Y" type="float" />
+                            <param name="Z" type="float" />
+                        </accessor>
+                    </technique_common>
+                </source>
+                <source id="geom-1F04C8D7-texcoord">
+                    <float_array id="geom-1F04C8D7-texcoord-array" count="286">0.61 0.45 0.92 0.58 0.92 0.58 0.98 0.45 0.92 0.52 0.92 0.52 0.92 0.45 0.77 0.42 0.64 0.42 0.64 0.42 0.08 0.08 0.02 0.08 0.08 0.02 0.02 0.02 0.08 0.16 0.08 0.22 0.02 0.16 0.02 0.22 0.45 0.42 0.55 0.42 0.45 0.42 0.52 0.36 0.45 0.36 0.55 0.48 0.77 0.58 0.55 0.48 0.77 0.58 0.55 0.77 0.55 0.77 0.55 0.59 0.55 0.59 0.55 0.94 0.55 0.94 0.38 0.77 0.38 0.94 0.22 0.98 0.06 0.94 0.22 0.94 0.22 0.77 0.06 0.77 0.22 0.59 0.06 0.59 0.03 0.77 0.38 0.98 0.38 0.59 0.38 0.45 0.38 0.45 0.22 0.45 0.22 0.45 0.34 0.42 0.39 0.36 0.30 0.42 0.05 0.48 0.02 0.98 0.09 0.98 0.20 0.08 0.20 0.02 0.20 0.16 0.20 0.22 0.02 0.28 0.08 0.28 0.02 0.36 0.08 0.36 0.77 0.94 0.55 0.98 0.77 0.98 0.55 0.48 0.55 0.48 0.77 0.66 0.77 0.80 0.50 0.95 0.55 0.98 0.30 0.11 0.23 0.06 0.23 0.02 0.28 0.19 0.36 0.19 0.33 0.31 0.42 0.19 0.42 0.09 0.23 0.33 0.42 0.33 0.42 0.31 0.42 0.02 0.42 0.02 0.55 0.02 0.55 0.02 0.55 0.19 0.55 0.08 0.66 0.19 0.66 0.06 0.55 0.33 0.67 0.33 0.77 0.33 0.77 0.19 0.94 0.08 0.94 0.19 0.86 0.08 0.84 0.19 0.98 0.02 0.92 0.02 0.92 0.02 0.77 0.06 0.77 0.02 0.77 0.02 0.92 0.33 0.84 0.33 0.98 0.39 0.89 0.39 0.83 0.39 0.55 0.33 0.66 0.02 0.66 0.02 0.98 0.19 0.98 0.19 0.98 0.14 0.98 0.08 0.98 0.08 0.98 0.30 0.66 0.39 0.72 0.39 0.23 0.28 0.98 0.98 0.98 0.94 0.98 0.83 0.98 0.73 0.61 0.42 0.98 0.67 0.20 0.28 0.64 0.42 0.64 0.42 0.08 0.42 0.02 0.42 0.20 0.36 0.20 0.42 0.23 0.17 0.06 0.45 0.02 0.94 0.02 0.59 0.02 0.48 0.02 0.77 0.64 0.42 0.64 0.42 </float_array>
+                    <technique_common>
+                        <accessor source="#geom-1F04C8D7-texcoord-array" count="143" stride="2">
+                            <param name="S" type="float" />
+                            <param name="T" type="float" />
+                        </accessor>
+                    </technique_common>
+                </source>
+                <source id="geom-1F04C8D7-colors">
+                    <float_array id="geom-1F04C8D7-colors-array" count="0" />
+                    <technique_common>
+                        <accessor source="#geom-1F04C8D7-colors-array" count="0" stride="4">
+                            <param name="R" type="float" />
+                            <param name="G" type="float" />
+                            <param name="B" type="float" />
+                            <param name="A" type="float" />
+                        </accessor>
+                    </technique_common>
+                </source>
+                <vertices id="geom-1F04C8D7-vtx">
+                    <input semantic="POSITION" source="#geom-1F04C8D7-pos" />
+                </vertices>
+                <triangles count="30" material="material-24AD9BC8-symbol">
+                    <input semantic="VERTEX" source="#geom-1F04C8D7-vtx" offset="0" />
+                    <input semantic="TEXCOORD" source="#geom-1F04C8D7-texcoord" offset="0" />
+                    <input semantic="COLOR" source="#geom-1F04C8D7-colors" offset="0" />
+                    <p>0 1 2 0 2 4 0 4 6 5 0 6 1 0 5 3 1 5 1 3 2 2 3 4 4 3 6 3 5 6 </p>
+                </triangles>
+            </mesh>
+        </geometry>
+        <geometry id="geom-39AB35EA" name="geom-39AB35EA">
+            <mesh>
+                <source id="geom-39AB35EA-pos">
+                    <float_array id="geom-39AB35EA-pos-array" count="408">-25.66 21.12 14.79 -23.82 24.83 16.41 -24.29 25.36 13.90 -23.35 17.27 19.14 -26.42 22.37 18.88 -26.36 15.63 17.71 -28.51 21.32 18.06 -19.39 20.87 15.47 -20.48 21.45 11.31 -23.82 24.83 16.41 -24.29 25.36 13.90 23.91 17.35 -16.08 24.77 12.66 -19.35 24.47 20.12 -21.60 23.50 17.57 -25.11 23.27 21.06 -25.21 11.78 -9.39 -13.58 17.57 0.45 -19.15 15.80 -8.21 -8.26 20.97 1.57 -14.43 14.83 4.97 2.98 9.80 -0.36 9.45 17.67 -3.25 -1.53 12.87 -9.61 4.20 8.47 12.03 2.92 2.64 7.82 9.86 3.32 -6.16 15.08 -3.26 2.68 15.69 -14.07 2.01 18.35 -15.81 -6.37 22.50 -10.23 -2.52 20.12 -4.27 -11.54 19.46 -11.51 -16.57 22.44 -1.23 -20.90 14.15 -9.31 -25.43 17.22 -16.83 -19.00 22.48 -6.52 8.02 12.53 6.15 -15.40 9.57 0.72 -22.09 -2.84 4.46 -20.42 2.76 -5.59 -26.52 3.40 -2.40 -25.38 8.17 20.15 21.01 -16.42 20.87 22.62 -22.92 16.58 22.28 -18.64 -13.16 -26.95 17.23 -21.82 -5.90 19.37 -20.03 0.87 16.16 -14.07 2.01 18.35 -20.03 0.87 16.16 -6.52 8.02 12.53 -9.89 11.04 5.61 -26.73 24.03 12.43 -24.41 19.46 9.52 -29.15 21.55 15.37 -27.82 15.93 13.71 14.66 16.96 -6.30 -0.75 16.13 -2.76 7.85 19.80 -10.68 6.63 -16.30 -8.47 10.87 -14.94 -2.86 22.28 4.65 -9.97 20.23 11.14 -5.92 -2.82 10.70 7.80 -9.89 11.04 5.61 17.97 12.70 -26.28 23.50 17.57 -25.11 21.94 10.95 -23.82 20.43 19.85 -26.09 14.72 16.74 -25.61 14.57 20.77 -22.17 4.99 10.86 -22.09 9.19 4.70 -23.84 16.58 22.28 -18.64 7.85 19.80 -10.68 4.43 16.49 -17.43 12.68 2.20 -22.66 17.57 0.45 -19.15 6.23 -7.58 -17.64 11.78 -9.39 -13.58 -3.81 4.26 -17.23 0.80 -3.44 -19.34 -10.31 -1.04 -12.32 -5.05 -10.22 -14.88 -4.70 12.08 -10.77 -11.54 7.50 -5.38 -17.82 2.16 0.84 -16.22 -6.65 -6.21 -18.55 -24.29 5.94 -23.39 -16.29 8.28 -15.59 -20.90 -1.30 -20.66 -11.83 1.06 -12.23 -28.29 10.16 -10.72 -24.21 0.34 -5.59 -26.52 3.40 -10.40 -15.77 -8.60 -5.26 -19.73 -6.84 0.72 -22.09 -2.84 -23.60 -6.89 13.08 -22.06 -2.88 6.84 -21.82 -5.90 19.37 -20.03 0.87 16.16 -21.72 0.74 9.83 -0.75 16.13 -2.76 6.63 -16.30 -8.47 0.57 -14.36 -12.79 -21.72 -19.90 19.88 -23.75 -18.83 14.70 -19.69 -24.95 17.90 -19.09 -26.56 11.08 -16.96 -27.55 15.11 -22.70 -14.47 20.61 -9.89 11.04 5.61 -16.08 6.67 2.67 20.87 22.62 -22.92 16.58 22.28 -18.64 20.15 21.01 -16.42 23.91 17.35 -16.08 24.77 12.66 -19.35 21.94 10.95 -23.82 21.94 10.95 -23.82 -16.08 6.67 2.67 -29.15 21.55 15.37 -28.51 21.32 18.06 -26.36 15.63 17.71 -28.51 21.32 18.06 -21.72 0.74 9.83 -20.03 0.87 16.16 23.27 21.06 -25.21 -12.23 -28.29 10.16 -22.70 -14.47 20.61 -19.69 -24.95 17.90 -16.96 -27.55 15.11 -21.72 -19.90 19.88 -26.42 22.37 18.88 -26.73 24.03 12.43 </float_array>
+                    <technique_common>
+                        <accessor source="#geom-39AB35EA-pos-array" count="136" stride="3">
+                            <param name="X" type="float" />
+                            <param name="Y" type="float" />
+                            <param name="Z" type="float" />
+                        </accessor>
+                    </technique_common>
+                </source>
+                <source id="geom-39AB35EA-texcoord">
+                    <float_array id="geom-39AB35EA-texcoord-array" count="272">0.77 0.42 0.64 0.42 0.64 0.42 0.08 0.08 0.02 0.08 0.08 0.02 0.02 0.02 0.08 0.16 0.08 0.22 0.02 0.16 0.02 0.22 0.45 0.42 0.55 0.42 0.45 0.42 0.52 0.36 0.45 0.36 0.55 0.48 0.77 0.58 0.55 0.48 0.77 0.58 0.55 0.77 0.55 0.77 0.55 0.59 0.55 0.59 0.55 0.94 0.55 0.94 0.38 0.77 0.38 0.94 0.22 0.98 0.06 0.94 0.22 0.94 0.22 0.77 0.06 0.77 0.22 0.59 0.06 0.59 0.03 0.77 0.38 0.98 0.38 0.59 0.38 0.45 0.38 0.45 0.22 0.45 0.22 0.45 0.34 0.42 0.39 0.36 0.30 0.42 0.05 0.48 0.02 0.98 0.09 0.98 0.20 0.08 0.20 0.02 0.20 0.16 0.20 0.22 0.02 0.28 0.08 0.28 0.02 0.36 0.08 0.36 0.77 0.94 0.55 0.98 0.77 0.98 0.55 0.48 0.55 0.48 0.77 0.66 0.77 0.80 0.50 0.95 0.55 0.98 0.30 0.11 0.23 0.06 0.23 0.02 0.28 0.19 0.36 0.19 0.33 0.31 0.42 0.19 0.42 0.09 0.23 0.33 0.42 0.33 0.42 0.31 0.42 0.02 0.42 0.02 0.55 0.02 0.55 0.02 0.55 0.19 0.55 0.08 0.66 0.19 0.66 0.06 0.55 0.33 0.67 0.33 0.77 0.33 0.77 0.19 0.94 0.08 0.94 0.19 0.86 0.08 0.84 0.19 0.98 0.02 0.92 0.02 0.92 0.02 0.77 0.06 0.77 0.02 0.77 0.02 0.92 0.33 0.84 0.33 0.98 0.39 0.89 0.39 0.83 0.39 0.55 0.33 0.66 0.02 0.66 0.02 0.98 0.19 0.98 0.19 0.98 0.14 0.98 0.08 0.98 0.08 0.98 0.30 0.66 0.39 0.72 0.39 0.23 0.28 0.98 0.98 0.98 0.94 0.98 0.83 0.98 0.73 0.61 0.42 0.98 0.67 0.20 0.28 0.64 0.42 0.64 0.42 0.08 0.42 0.02 0.42 0.20 0.36 0.20 0.42 0.23 0.17 0.06 0.45 0.02 0.94 0.02 0.59 0.02 0.48 0.02 0.77 0.64 0.42 0.64 0.42 </float_array>
+                    <technique_common>
+                        <accessor source="#geom-39AB35EA-texcoord-array" count="136" stride="2">
+                            <param name="S" type="float" />
+                            <param name="T" type="float" />
+                        </accessor>
+                    </technique_common>
+                </source>
+                <source id="geom-39AB35EA-colors">
+                    <float_array id="geom-39AB35EA-colors-array" count="0" />
+                    <technique_common>
+                        <accessor source="#geom-39AB35EA-colors-array" count="0" stride="4">
+                            <param name="R" type="float" />
+                            <param name="G" type="float" />
+                            <param name="B" type="float" />
+                            <param name="A" type="float" />
+                        </accessor>
+                    </technique_common>
+                </source>
+                <vertices id="geom-39AB35EA-vtx">
+                    <input semantic="POSITION" source="#geom-39AB35EA-pos" />
+                </vertices>
+                <triangles count="564" material="material-3FB9CF13-symbol">
+                    <input semantic="VERTEX" source="#geom-39AB35EA-vtx" offset="0" />
+                    <input semantic="TEXCOORD" source="#geom-39AB35EA-texcoord" offset="0" />
+                    <input semantic="COLOR" source="#geom-39AB35EA-colors" offset="0" />
+                    <p>0 1 2 0 134 1 123 134 0 122 123 0 122 0 135 135 0 2 3 4 5 49 3 5 48 3 49 48 50 3 3 50 7 7 4 3 7 9 4 7 8 9 7 51 8 50 51 7 8 51 53 52 8 53 52 53 54 54 53 55 55 124 54 55 127 124 126 127 55 55 121 126 53 121 55 53 51 121 5 4 6 9 8 10 10 8 52 11 12 13 11 13 42 42 13 43 44 42 43 43 13 15 13 14 15 13 12 14 12 119 14 16 17 18 18 60 16 60 18 23 23 39 60 37 39 23 23 21 37 22 21 23 20 21 22 20 24 21 24 20 56 24 56 57 63 24 57 25 24 63 21 24 25 27 21 25 26 21 27 37 21 26 31 37 26 26 27 31 31 27 30 30 32 31 29 32 30 28 29 30 47 29 28 46 29 47 130 29 46 130 35 29 130 133 35 131 35 133 45 35 131 34 35 45 32 35 34 33 32 34 31 32 33 33 37 31 33 39 37 41 39 33 40 39 41 38 39 40 38 60 39 59 60 38 16 60 59 18 17 19 19 22 18 61 22 19 22 61 20 20 61 62 56 20 62 117 56 62 116 56 117 116 58 56 115 58 116 57 56 58 63 57 64 64 36 63 36 25 63 36 27 25 28 27 36 28 30 27 29 35 32 65 66 67 66 65 68 66 68 128 114 128 68 114 68 70 70 73 114 73 70 74 74 70 75 75 84 74 71 84 75 80 84 71 84 80 85 84 85 103 74 84 103 103 85 112 85 113 112 85 86 113 85 82 86 85 80 82 80 81 82 80 72 81 71 72 80 71 69 72 71 75 69 69 75 70 69 70 68 69 68 65 69 65 72 72 65 76 72 76 81 81 76 78 81 78 83 82 81 83 83 87 82 95 87 83 87 95 91 91 86 87 99 86 91 89 99 91 90 89 91 88 89 90 90 93 88 90 96 93 95 96 90 91 95 90 96 95 105 105 97 96 104 97 105 105 79 104 78 79 105 78 77 79 76 77 78 76 67 77 65 67 76 86 82 87 99 102 86 102 99 98 98 101 102 100 101 98 111 100 98 98 107 111 107 98 89 89 109 107 88 109 89 88 92 109 93 92 88 92 93 94 93 96 94 94 96 97 98 99 89 106 107 108 107 106 111 108 107 109 109 110 108 92 110 109 86 102 113 23 18 22 33 34 41 41 34 129 41 129 40 129 45 132 129 34 45 45 131 132 105 95 83 83 78 105 118 117 61 61 19 118 118 19 120 120 19 17 61 117 62 54 124 125 </p>
+                </triangles>
+            </mesh>
+        </geometry>
+    </library_geometries>
+    <library_visual_scenes>
+        <visual_scene id="default">
+            <node id="node-1F04C8D7" name="node-1F04C8D7">
+                <translate>0.0 0.0 0.0</translate>
+                <rotate>0.0 0.0 1.0 0.0</rotate>
+                <rotate>0.0 1.0 0.0 0.0</rotate>
+                <rotate>1.0 0.0 0.0 0.0</rotate>
+                <scale>1.0 1.0 1.0</scale>
+                <instance_geometry url="#geom-1F04C8D7">
+                    <bind_material>
+                        <technique_common>
+                            <instance_material symbol="material-24AD9BC8-symbol" target="#material-24AD9BC8" />
+                        </technique_common>
+                    </bind_material>
+                </instance_geometry>
+            </node>
+            <node id="node-39AB35EA" name="node-39AB35EA">
+                <translate>0.0 0.0 0.0</translate>
+                <rotate>0.0 0.0 1.0 0.0</rotate>
+                <rotate>0.0 1.0 0.0 0.0</rotate>
+                <rotate>1.0 0.0 0.0 0.0</rotate>
+                <scale>1.0 1.0 1.0</scale>
+                <instance_geometry url="#geom-39AB35EA">
+                    <bind_material>
+                        <technique_common>
+                            <instance_material symbol="material-3FB9CF13-symbol" target="#material-3FB9CF13" />
+                        </technique_common>
+                    </bind_material>
+                </instance_geometry>
+            </node>
+        </visual_scene>
+    </library_visual_scenes>
+    <scene>
+        <instance_visual_scene url="#default" />
+    </scene>
+</COLLADA>
